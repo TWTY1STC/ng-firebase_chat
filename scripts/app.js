@@ -1,4 +1,4 @@
-var app = angular.module("sampleApp", ['ui.router', 'firebase', 'ui.bootstrap', 'ngCookies']);
+var app = angular.module("chatApp", ['ui.router', 'firebase', 'ui.bootstrap', 'ngCookies']);
 		
 app.config(function($locationProvider, $stateProvider){
 	$locationProvider
@@ -16,32 +16,28 @@ app.config(function($locationProvider, $stateProvider){
 		.state('popup', {
 			url: '/',
 			controller: 'ModalCtrl as popup',
-			templateUrl: '/templates/popup.html'
+			templateUrl: '/templates/username.html'
 		});
 	}
 );
 
 
 
-app.controller("roomCtrl", function($scope, $firebaseArray) {
-    var ref = firebase.database().ref().child("rooms");
-
-    $scope.rooms = $firebaseArray(ref);
-
-    $scope.user = "Guest" + Math.round(Math.random()*100);
-    
-    $scope.rooms = chatAppData;
-    
-    $scope.addRoom = function(){
-        $scope.rooms.$add({
-            username: $scope.user,
-            content: "",
-            sentAt: "",
-            name: $scope.room,
-            timestamp: firebase.database.ServerValue.TIMESTAMP
+app.run(function($cookies, $uiModal){
+    var currentUser = $cookies.get('chatCurrentUser');
+    if(!currentUser || currentUser ==""){
+        $uiModal.open({
+            templateUrl:"templates/username.html",
+            controller: "UserCtrl",
+            backdrop: "static",
+            size: 'sm',
+            keyboard: false
         });
-        
-        $scope.room = "";
+    }
+    
+    this.setCurrentUser = function(username){
+        $cookies.put('chatCurrentUser', username);
     };
+    
     
 });

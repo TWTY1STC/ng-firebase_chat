@@ -8,25 +8,31 @@ app.factory("Room", ["$firebaseArray",
 	var messages = $firebaseArray(messageRef);
 	var rooms = $firebaseArray(roomRef);
 	
-	createRoom = function(newRoomName){
+	addRoom = function(newRoomName){
 		rooms.$add({
 			name: newRoomName,
 			created_at: firbase.database.ServerValue.TIMESTAMP
 		});
-		newRoomName = "";
 	};
 	
-	addMessage = function() {
+	addMessage = function(username, content, room) {
 		messages.$add({
-			username: userName, 
+			username: username, 
 			content: content,
 			sentAt: firebase.database.ServerValue.TIMESTAMP,
-			roomid: room.$id
+			roomId: room.$id
 		});
 	 };
 	
-	return  {
+	getMessages = function(){
+		
+	};
+	return {
 		all: rooms,
-		messages: messages				
+		messages: function(roomId){
+			return $firebaseArray(messages.orderByChild('roomId').equalTo(roomId));
+		
+			
+		}				
 	};
 }]);
