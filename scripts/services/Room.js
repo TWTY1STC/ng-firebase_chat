@@ -1,10 +1,10 @@
 var app = angular.module("chatApp");
 
-app.factory("Room", ["$firebaseArray", 
-	function($firebaseArray){
+app.factory("Room", ['appData', "$firebaseArray", 
+	function(appData, $firebaseArray){
 	console.log("in Room factory");
-	var messageRef = firebase.database().ref().child("messages");
-	var roomRef = firebase.database().ref().child("rooms");
+	var messageRef = appData.getFirebaseInstance.database().ref().child("messages");
+	var roomRef =appData.getFirebaseInstance.database().ref().child("rooms");
 	var messages = $firebaseArray(messageRef);
 	var rooms = $firebaseArray(roomRef);
 	

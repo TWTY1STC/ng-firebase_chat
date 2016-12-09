@@ -9,7 +9,7 @@ app.controller("MainCtrl", ["$scope", "Room", "Message", "$cookies", '$uibModal'
 		
 		$scope.selectRoom = function(room){
 		    $scope.selectedRoom = room; 
-		    $scope.messages = Room.messages($scope.selectedRoom.roomId);
+		    $scope.messages = Room.messages($scope.selectedRoom.$id);
 		};
 		
 		$scope.addRoom = function(){
@@ -20,9 +20,7 @@ app.controller("MainCtrl", ["$scope", "Room", "Message", "$cookies", '$uibModal'
             });
 		};
 		
-		
-		
-		//$scope.addRoom= createRoom(newRoomName);
+		$scope.addMessage = Room.addMessage();
 		
 	}
 ]);
