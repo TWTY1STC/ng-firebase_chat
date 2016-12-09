@@ -1,6 +1,6 @@
 var app = angular.module("chatApp");
 
-app.controller("RoomCtrl",['$scope', 'Room', '$uibModalInstance',
+app.controller("ModalCtrl",['$scope', 'Room', '$uibModalInstance',
     function($scope, Room, $uibModalInstance){
     
     $scope.createRoom = function(){

@@ -10,23 +10,21 @@ app.config(function($locationProvider, $stateProvider){
 	$stateProvider
 		.state('landing', {
 			url: '/',
-			controller: 'mainCtrl as landing',
+			controller: 'MainCtrl as landing',
 			templateUrl: '/templates/landing.html'
 		})
 		.state('popup', {
 			url: '/',
 			controller: 'ModalCtrl as popup',
-			templateUrl: '/templates/username.html'
+			templateUrl: '/templates/popup.html'
 		});
 	}
 );
 
-
-
-app.run(function($cookies, $uiModal){
+app.run(function($cookies, $uibModal){
     var currentUser = $cookies.get('chatCurrentUser');
     if(!currentUser || currentUser ==""){
-        $uiModal.open({
+        $uibModal.open({
             templateUrl:"templates/username.html",
             controller: "UserCtrl",
             backdrop: "static",

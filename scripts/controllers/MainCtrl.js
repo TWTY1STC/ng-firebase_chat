@@ -20,9 +20,9 @@ app.controller("MainCtrl", ["$scope", "Room", "Message", "$cookies", '$uibModal'
             });
 		};
 		
-		selectRoom
 		
-		$scope.addRoom= createRoom(newRoomName);
+		
+		//$scope.addRoom= createRoom(newRoomName);
 		
 	}
 ]);
