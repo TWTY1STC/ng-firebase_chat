@@ -1,0 +1,37 @@
+	<div class="container" style="margin-top: 50px;" ng-controller="mainCtrl">
+		<section class="pull-right">
+			<div>
+				
+				  <div ng-repeat="message in messages">{{message.text}}
+					<!-- <!-- edit a message -->
+<!-- 					<input ng-model="message.text" ng-change="messages.$save(message)" />
+ -->					<!-- delete a message --> 
+					<button ng-click="messages.$remove(message)">X</button>
+				  </div>
+				
+				<!-- push a new message onto the array -->
+				<form ng-submit="addMessage()">
+				  <input ng-model="newMessageText" />
+				  <button type="submit">Add Message</button>
+				</form>
+			</div>
+		</section>
+		
+		<section class="pull-left">
+			<div >
+				<ul>
+				  <li ng-repeat="room in rooms">
+
+					<input ng-model="room.name" ng-change="rooms.$save(room)" />
+				  
+					<button ng-click="rooms.$remove(room)">Delete Room</button>
+				  </li>
+				</ul>
+				
+				<form ng-submit="addRoom()">
+				  <input ng-model="newRoomName" />
+				  <button type="submit" ng-click="()">Add Room</button>
+				</form>
+			</div>
+		</section>
+	</div>

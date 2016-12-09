@@ -6,37 +6,36 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway">
-	<link rel="stylesheet" type="text/css" href="style/style.css">	
+	<link rel="stylesheet" type="text/css" ui-sref="styles/style.css">	
 </head>
 <body>
-     <p>something in here</p>
-     <container>
-         <!--likely to be a template-->
-         <div class="sidebar">
-             <ul ng-repeat="room in rooms">
-                 <li>
-                    {{room.name}}
-                 </li>
-             </ul>
-         </div><!--sidebar-->
-         
-         <!--likely to be another template-->
-         <section class="content">
-             
-             <label ng-repeat="message in messages">
-                {{ username ":"}} {{message}}
-             </label>
-             
-         </section>
-     </container>
-	    <!-- Angular -->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-		<!-- Firebase -->
-	<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
-		<!-- AngularFire -->
-	<script src="https://cdn.firebase.com/libs/angularfire/2.1.0/angularfire.min.js"></script>
-	
-	<script src="scripts/app.js"></script>
 
+	<ui-view></ui-view>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-cookies.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+	<script src="https://cdn.firebase.com/libs/angularfire/2.1.0/angularfire.min.js"></script>
+	<script src="scripts/app.js"></script>
+	<script src="scripts/services/Room.js"></script>
+	<script src="scripts/services/Message.js"></script>
+	<script src="scripts/controllers/MainCtrl.js"></script>
+	<script src="scripts/controllers/MessageCtrl.js"></script>
+	
+			
+	<script>
+	  // Initialize Firebase
+	  var config = {
+		apiKey: "AIzaSyCJGesrLvzoFIGka_ismdQcRlROaE9sdGI",
+		authDomain: "chat-rooms-65a50.firebaseapp.com",
+		databaseURL: "https://chat-rooms-65a50.firebaseio.com",
+		storageBucket: "chat-rooms-65a50.appspot.com",
+		messagingSenderId: "70383620957"
+	  };
+	  firebase.initializeApp(config);
+	</script>
 </body>
 </html>
