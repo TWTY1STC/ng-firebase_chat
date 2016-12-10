@@ -1,14 +1,14 @@
-<h2>In new room popup</h2>
-<h1>Welcome to the rooms page... pick a rooms, any room.</h1>
-
-<form class=modal ng-submit="popup.createRoom()">
-    <div>
-        <h2>Create a new chat room.</h2>
+<form ng-controller="ModalInstanceCtrl" ng-submit="add()">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Create a new chat room.</h3>
     </div>
-    <div>
-        <input type="text" name="name" ng-model="popup.name" 
-        class="form-control" placeholder="Enter a room name" />
-        <button class="btn btn-default" ng-click="popup.cancel()">Cancel</button>
-        <input class="btn btn-primary" type="submit" value="Submit" />
+    <div class="modal-body" id="modal-body">
+        <input type="text" ng-model="newRoomName" class="form-control" placeholder="Enter a username"/>
+    </div>
+    <div class="modal-footer">
+         <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+        <input class="btn btn-primary" type="submit" value="OK"/>
     </div>
 </form>
+
+<h2>In new room popup</h2>

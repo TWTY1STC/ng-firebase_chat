@@ -1,10 +1,12 @@
 <h2>In username popup</h2>
-<form class="modal" ng-submit="user.add()">
-    <div>
-        <h2>Set a username to begin sending messages</h2> 
-    </div>
-   <div>
-       <input type="text" ng-model="user.username"  name="username" class="form-control" placeholder="Enter a username" required/>
-	    <button type="submit">Ok</button>
-   </div>
-</form>
+   <form ng-submit="user.open()" id="username.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">Set a username to begin sending messages</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <input type="text" ng-model="user.username"  name="username" class="form-control" placeholder="Enter a username" required/>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="user.ok()">OK</button>
+        </div>
+    </form>

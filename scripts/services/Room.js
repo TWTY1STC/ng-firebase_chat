@@ -3,36 +3,23 @@ var app = angular.module("chatApp");
 app.factory("Room", ['appData', "$firebaseArray", 
 	function(appData, $firebaseArray){
 	console.log("in Room factory");
-	var messageRef = appData.getFirebaseInstance.database().ref().child("messages");
-	var roomRef =appData.getFirebaseInstance.database().ref().child("rooms");
+	var messageRef = firebase.database().ref().child("messages");
+	var roomRef =firebase.database().ref().child("rooms");
 	var messages = $firebaseArray(messageRef);
 	var rooms = $firebaseArray(roomRef);
-	
-	addRoom = function(newRoomName){
-		rooms.$add({
-			name: newRoomName,
-			created_at: firbase.database.ServerValue.TIMESTAMP
-		});
-	};
-	
-	addMessage = function(username, content, room) {
-		messages.$add({
-			username: username, 
-			content: content,
-			sentAt: firebase.database.ServerValue.TIMESTAMP,
-			roomId: room.$id
-		});
-	 };
-	
-	getMessages = function(){
-		
-	};
+
+
 	return {
 		all: rooms,
 		messages: function(roomId){
 			return $firebaseArray(messages.orderByChild('roomId').equalTo(roomId));
-		
+			},
+		create: function(name){
+			rooms.$add({
+				name: name,
+				created_at: firebase.database.ServerValue.TIMESTAMP
+			});
+		}
 			
-		}				
 	};
 }]);

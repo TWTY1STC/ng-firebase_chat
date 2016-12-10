@@ -14,13 +14,11 @@ app.controller("MainCtrl", ["$scope", "Room", "Message", "$cookies", '$uibModal'
 		
 		$scope.addRoom = function(){
 		    $uibModal.open({
-            templateUrl: 'templates/popup.html',
-            controller: 'RoomCtrl as roomer',
-            size: 'sm'
-            });
+	            templateUrl: '/templates/popup.html',
+	            controller: 'ModalCtrl',
+	            size: 'sm'
+	            });
 		};
-		
-		$scope.addMessage = Room.addMessage();
 		
 	}
 ]);

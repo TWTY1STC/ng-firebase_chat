@@ -18,15 +18,14 @@ app.config(function($locationProvider, $stateProvider){
 			controller: 'ModalCtrl as popup',
 			templateUrl: '/templates/popup.html'
 		});
-	}
-);
+});
 
-app.run(function($cookies, $uibModal){
+app.run(function($scope, $cookies, $uibModal, $document){
     var currentUser = $cookies.get('chatCurrentUser');
     
     if(!currentUser || currentUser ==""){
         $uibModal.open({
-            templateUrl:"templates/username.html",
+            templateUrl:"/templates/username.html",
             controller: "UserCtrl",
             backdrop: "static",
             size: 'sm',
@@ -34,18 +33,23 @@ app.run(function($cookies, $uibModal){
         });
     }
     
-    this.setCurrentUser = function(username){
+    $scope.setCurrentUser = function(username){
         $cookies.put('chatCurrentUser', username);
     };
 });
-app.factory("appData", function(){
+
+app.factory("appData", ['$firebaseArray',
+    function($firebaseArray){
     var config = {
-			apiKey: "AIzaSyCJGesrLvzoFIGka_ismdQcRlROaE9sdGI",
-			authDomain: "chat-rooms-65a50.firebaseapp.com",
-			databaseURL: "https://chat-rooms-65a50.firebaseio.com",
-			storageBucket: "chat-rooms-65a50.appspot.com",
-			messagingSenderId: "70383620957"
-			};
+		apiKey: "AIzaSyCJGesrLvzoFIGka_ismdQcRlROaE9sdGI",
+		authDomain: "chat-rooms-65a50.firebaseapp.com",
+		databaseURL: "https://chat-rooms-65a50.firebaseio.com",
+		storageBucket: "chat-rooms-65a50.appspot.com",
+		messagingSenderId: "70383620957"
+		};
+		
+	firebase.initializeApp(config);
+	var ref = firebase.database().ref();
 			
-	this.getFirebaseInstance = firebase.initializeApp(config);
-})
+	return $firebaseArray(ref);
+}]);
