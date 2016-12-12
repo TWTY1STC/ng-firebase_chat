@@ -1,13 +1,13 @@
-<form ng-controller="ModalInstanceCtrl" ng-submit="add()">
+<form ng-submit="popup.add()">
     <div class="modal-header">
         <h3 class="modal-title" id="modal-title">Create a new chat room.</h3>
     </div>
     <div class="modal-body" id="modal-body">
-        <input type="text" ng-model="newRoomName" class="form-control" placeholder="Enter a username"/>
+        <input type="text" ng-model="newRoomName" class="form-control" placeholder="Name your new room."/>
     </div>
     <div class="modal-footer">
-         <button class="btn btn-default" ng-click="cancel()">Cancel</button>
-        <input class="btn btn-primary" type="submit" value="OK"/>
+         <button class="btn btn-default" ng-click="popup.cancel()">Cancel</button>
+        <input class="btn btn-primary" type="submit" value="Ok"/>
     </div>
 </form>
 

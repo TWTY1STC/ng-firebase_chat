@@ -6,18 +6,34 @@ app.controller("MainCtrl", ["$scope", "Room", "Message", "$cookies", '$uibModal'
 		$scope.rooms = Room.all;
 		$scope.selectedRoom = null; 
 		$scope.messages = null; 
+		$scope.username= $cookies.getObject('chatCurrentUser');
 		
 		$scope.selectRoom = function(room){
-		    $scope.selectedRoom = room; 
-		    $scope.messages = Room.messages($scope.selectedRoom.$id);
+		    $scope.roomId = room.$id; 
+		    $scope.selectedRoom =room;
+		    $scope.messages = Room.messages(room);
 		};
 		
-		$scope.addRoom = function(){
-		    $uibModal.open({
+		$scope.open = function(){
+			$uibModal.open({
+		    	animation: $scope.animationsEnabled,
 	            templateUrl: '/templates/popup.html',
-	            controller: 'ModalCtrl',
+	            controller: 'ModalCtrl as popup',
+	            controllerAs: '$ctrl',
 	            size: 'sm'
 	            });
+		};
+		 
+		$scope.dismiss= function () {
+			$uibModal.dismiss();
+		};
+		
+		$scope.send = function(){
+			if($scope.content && $scope.selectedRoom){
+				Message.send($scope.username, $scope.content, $scope.selectedRoom);
+			}
+			
+			$scope.content = "";
 		};
 		
 	}

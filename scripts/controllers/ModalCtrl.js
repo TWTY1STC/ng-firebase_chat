@@ -1,19 +1,19 @@
 var app = angular.module("chatApp");
+//popup (newRoom) controller
 
-app.controller("ModalCtrl",['$scope', 'Room', '$uibModal', '$document',
-    function($scope, Room, $uibModal){
-        
-    var modalInstance = $uibModal.open({
-      animation: $scope.animationsEnabled,
-      templateUrl: '/templates/popup.html',
-      controller: 'ModalInstanceCtrl',
-      controllerAs: '$ctrl',
-      size: 'sm'
-     });
+app.controller("ModalCtrl", ['$uibModalInstance', 'Room', 
+function($uibModalInstance, Room){
     
-    
-    $scope.toggleAnimation = function () {
-        $scope.animationsEnabled = !$scope.animationsEnabled;
+    this.add = function(){
+        if(this.newRoomName){
+            Room.addRoom(this.newRoomName);
+            this.newRoomName = "";
+            $uibModalInstance.close();
+        }
     };
-    }
-]);
+    
+    this.dismiss =function(){
+        $uibModalInstance.dismiss('cancel');
+    };
+    
+}]);

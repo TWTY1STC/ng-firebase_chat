@@ -1,22 +1,20 @@
 <h2> In landing Page</h2>
-<div class="container" style="margin-top: 50px;" >
-	<!--ROOMS display on sidebar-->
+<div class="container" style="margin-top: 50px;">
 	<section class="pull-left">
 		<div >
 			<ul>
-			  <li style="list-style: none;" ng-repeat="room in rooms">
+			  <li  ng-repeat="room in landing.rooms">
 				<a ng-click="landing.selectRoom(room)"><strong>{{ room.name }}</strong></a>
 			  </li>
 			</ul>
-		
 		</div>
 		
-		<button type="submit" ng-click="landing.addRoom()">Add Room</button>
+		<button type="button" ng-click="landing.open()">Add Room</button>
 	</section>
 	
 	<!--MESSAGES display on right of room sidebar -->
 	<section class="pull-right">
-		<h3> {{landing.selectedRoom.name}}</h3>
+		<h2> {{landing.selectedRoom}} Messages</h2>
 			<hr/>
 			<br/>
 			  <div ng-repeat="message in landing.messages">
@@ -25,10 +23,9 @@
 			  
 			  <br/>
 			<!-- push a new message onto the array -->
-			<form class="msg-form" ng-submit="landing.addMessage()">
-			  <input ng-model="message.content"/>
+			<form class="msg-form" ng-submit="landing.sendMessage()">
+			  <input ng-model="landing.content" placeholder="Send Message" />
 			  <button type="submit">Add Message</button>
 			</form>
-		</div>
 	</section>
 </div>

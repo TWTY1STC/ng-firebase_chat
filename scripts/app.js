@@ -13,28 +13,27 @@ app.config(function($locationProvider, $stateProvider){
 			controller: 'MainCtrl as landing',
 			templateUrl: '/templates/landing.html'
 		})
-		.state('popup', {
-			url: '/setuser',
-			controller: 'ModalCtrl as popup',
+		.state('roommodal', {
+			url: '/',
+			controller: 'ModalCtrl as roommodal',
 			templateUrl: '/templates/popup.html'
 		});
 });
 
-app.run(function($scope, $cookies, $uibModal, $document){
+app.run(function($cookies, $uibModal){
     var currentUser = $cookies.get('chatCurrentUser');
     
-    if(!currentUser || currentUser ==""){
+    if(!currentUser || currentUser ===""){
         $uibModal.open({
             templateUrl:"/templates/username.html",
-            controller: "UserCtrl",
-            backdrop: "static",
-            size: 'sm',
-            keyboard: false
+            controller: "UserCtrl as user",
+            keyboard: false,
+            backdrop: false
         });
     }
     
-    $scope.setCurrentUser = function(username){
-        $cookies.put('chatCurrentUser', username);
+    this.setCurrentUser = function (username){
+    	$cookies.put('chatCurrentUser', username);
     };
 });
 

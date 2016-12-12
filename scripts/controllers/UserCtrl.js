@@ -1,19 +1,14 @@
 var app = angular.module("chatApp");
 
-app.controller("UserCtrl", function($cookies, $document, $uibModal, $uibModalInstance, Room){
+app.controller("UserCtrl", ['$cookies', '$uibModalInstance', 
+function($cookies, $uibModalInstance ){
         
-        $uibModal.open= function(){
-            if(this.text){
-                $cookies.put('chatCurrentUser', this.text);
-                this.text = "";
-                
-            }
+    this.ok = function(){
+        if(this.username){
+            $cookies.put('chatCurrentUser', this.username);
+            this.username = "";
             
-        };
-        
-         this.ok = function () {
             $uibModalInstance.close();
-  };
-        
-    }
-);
+        }
+    };
+}]);
