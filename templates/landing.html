@@ -4,26 +4,27 @@
 		<div >
 			<ul>
 			  <li  ng-repeat="room in landing.rooms">
-				<a ng-click="landing.selectRoom(room)"><strong>{{ room.name }}</strong></a>
+				<a ng-click="selectRoom(room)"><strong>{{ room.name }}</strong></a>
+				console.log(selectedRoom.name)
 			  </li>
 			</ul>
 		</div>
 		
-		<button type="button" ng-click="landing.open()">Add Room</button>
+		<button type="button" ng-click="open()">Add Room</button>
 	</section>
 	
 	<!--MESSAGES display on right of room sidebar -->
 	<section class="pull-right">
-		<h2> {{landing.selectedRoom}} Messages</h2>
+		<h2> {{selectedRoom}} Messages</h2>
 			<hr/>
 			<br/>
-			  <div ng-repeat="message in landing.messages">
+			  <div ng-repeat="message in messages">
 			  	<p>{{message.content}}</p>
 			  </div>
 			  
 			  <br/>
 			<!-- push a new message onto the array -->
-			<form class="msg-form" ng-submit="landing.sendMessage()">
+			<form class="msg-form" ng-submit="sendMessage()">
 			  <input ng-model="landing.content" placeholder="Send Message" />
 			  <button type="submit">Add Message</button>
 			</form>
