@@ -12,11 +12,6 @@ app.config(function($locationProvider, $stateProvider){
 			url: '/',
 			controller: 'MainCtrl as landing',
 			templateUrl: '/templates/landing.html'
-		})
-		.state('roommodal', {
-			url: '/',
-			controller: 'ModalCtrl as roommodal',
-			templateUrl: '/templates/popup.html'
 		});
 });
 
