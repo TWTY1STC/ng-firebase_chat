@@ -11,23 +11,18 @@ app.controller("MainCtrl", ["$scope", "Room", "Message", "$cookies", '$uibModal'
 		$scope.selectRoom = function(room){
 		    $scope.roomId = room.$id; 
 		    $scope.selectedRoom =room;
-		    $scope.messages = Room.messages(room);
+		    $scope.messages = Room.getMessages(room);
 		};
 		
 		$scope.open = function(){
+			console.log("opening Modal");
 			$uibModal.open({
-		    	animation: $scope.animationsEnabled,
 	            templateUrl: '/templates/popup.html',
 	            controller: 'ModalCtrl as roommodal',
-	            controllerAs: '$ctrl',
 	            size: 'sm'
 	            });
 		};
-		 
-		$scope.dismiss= function () {
-			$uibModal.dismiss();
-		};
-		
+
 		$scope.send = function(){
 			if($scope.content && $scope.selectedRoom){
 				Message.send($scope.username, $scope.content, $scope.selectedRoom);
@@ -35,6 +30,5 @@ app.controller("MainCtrl", ["$scope", "Room", "Message", "$cookies", '$uibModal'
 			
 			$scope.content = "";
 		};
-		
 	}
 ]);
