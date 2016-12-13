@@ -18,7 +18,7 @@ app.controller("MainCtrl", ["$scope", "Room", "Message", "$cookies", '$uibModal'
 			$uibModal.open({
 		    	animation: $scope.animationsEnabled,
 	            templateUrl: '/templates/popup.html',
-	            controller: 'ModalCtrl as popup',
+	            controller: 'ModalCtrl as roommodal',
 	            controllerAs: '$ctrl',
 	            size: 'sm'
 	            });
